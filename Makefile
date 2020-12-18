@@ -5,7 +5,7 @@ LIZMAP_USER_ID:=$(shell id -u)
 LIZMAP_USER_GID:=$(shell id -g)
 
 LIZMAP_VERSION_TAG:=3.3
-QGIS_VERSION_TAG:=3.10
+QGIS_VERSION_TAG:=3.16
 
 QGIS_MAP_WORKERS:=1
 WPS_NUM_WORKERS:=1
@@ -13,6 +13,10 @@ WPS_NUM_WORKERS:=1
 LIZMAP_PORT:=127.0.0.1:8090
 OWS_PORT:=127.0.0.1:8091
 WPS_PORT:=127.0.0.1:8092
+
+POSTGRES_DB:=postgres
+POSTGRES_USER:=postgres
+POSTGRES_PASS:=postgres
 
 LIZMAP_DIR=$(shell pwd)/lizmap
 LIZMAP_USER_ID:=$(shell id -u)
@@ -31,11 +35,14 @@ env:
 		echo "LIZMAP_PORT=$(LIZMAP_PORT)" >> .env;\
 		echo "OWS_PORT=$(OWS_PORT)" >> .env;\
 		echo "WPS_PORT=$(WPS_PORT)" >> .env;\
+		echo "POSTGRES_DB=$(POSTGRES_DB)" >> .env;\
+        echo "POSTGRES_USER=$(POSTGRES_USER)" >> .env;\
+        echo "POSTGRES_PASS=$(POSTGRES_PASS)" >> .env;\
 	}
 
 #
 # Generate a docker-compose .env file at each
-# `run` invocation. 
+# `run` invocation.
 # This enable using the `docker-compose` commands without
 # relying on the Makefile
 #
